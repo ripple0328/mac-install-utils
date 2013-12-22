@@ -103,9 +103,10 @@ function install-brew {
 function install-rvm {
     check-command-existence rvm &&
     msg 'COMMAND\t\t -rvm- has been installed' $BYELLOW ||
-    \curl -sSL https://get.rvm.io | bash    
+    \curl -sSL https://get.rvm.io | bash -s stable --ruby --gems=rails
     msg 'UPDATING\t\t -rvm-...' $BPURPLE
-    rvm get stable > /dev/null 2>&-     
+    rvm get stable > /dev/null 2>&-
+    source /Users/`whoami`/.rvm/scripts/rvm    
 }
 
 function install-brew-cask {

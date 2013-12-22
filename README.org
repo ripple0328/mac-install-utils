@@ -24,5 +24,7 @@
   * get-root-permisson
   * install-Inconsolata-powerline-font
 * expample
-  for an full example to see this project, installation is in bin directory:
+  for an full example look at this project, installation script is in the bin
+  directory:
+  
   https://github.com/ripple0328/.emacs.d

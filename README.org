@@ -15,6 +15,7 @@
   * git(hub)
 * what it provide(as a bash function)
   * check-and-brew-install
+
     check the existence of the brew package
     if not installed then install
   * check-and-npm-install

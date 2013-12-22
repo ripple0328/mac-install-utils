@@ -126,7 +126,7 @@ function patch-shebang-path() {
 rm $1.bak    
 }
 
-function install-font {
+function install-Inconsolata-powerline-font {
     msg 'INSTALL\t\t patched font for powline theme' $BPURPLE
     check-and-brew-install wget
     wget -q 'https://github.com/Lokaltog/powerline-fonts/blob/master/Inconsolata/Inconsolata%20for%20Powerline.otf' -O Inconsolata\ for\ Powerline.otf
@@ -137,3 +137,4 @@ function get-root-permisson {
    sudo ls > /dev/null 2>&-
 }
 
+curl -sSL https://raw.github.com/ripple0328/mac-install-utils/master/basic-environment-installation.sh | bash

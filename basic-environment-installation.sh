@@ -8,4 +8,3 @@ get-root-permisson
 install-brew
 install-git
 install-brew-cask
-# install-font

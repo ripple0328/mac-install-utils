@@ -138,4 +138,8 @@ function get-root-permisson {
    sudo ls > /dev/null 2>&-
 }
 
+
+function  install_pow {
+    curl get.pow.cx | sh    
+}
 curl -sSL https://raw.github.com/ripple0328/mac-install-utils/master/basic-environment-installation.sh | bash

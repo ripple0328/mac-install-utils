@@ -14,20 +14,20 @@
   * brew-cask
   * git(hub)
 * what it provide(as a bash function)
-  * check-and-brew-install
+  * check-and-brew-install /package_name/
 
     check the existence of the brew package
     if not installed then install
-  * check-and-npm-install
-  * check-and-cask-install
-  * check-and-gem-install
-  * check-and-install-brew-repo
-  * check-comand-existence
-  * cleanup-command
-  * patch-shebang-path
-  * install-rvm
-  * cask-packages-path
-  * get-root-permisson
+  * check-and-npm-install  /package_name/
+  * check-and-cask-install  /software_name/
+  * check-and-gem-install  /gem_name/
+  * check-and-install-brew-repo /repo_name/
+  * check-comand-existence /command_name/
+  * cleanup-command /command_name/
+  * patch-shebang-path /file_name interpreter/
+  * install-rvm 
+  * cask-packages-path /software_name/
+  * get-root-permisson 
   * install-Inconsolata-powerline-font
 * expample
   for an full example look at this project, installation script is in the bin

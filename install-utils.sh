@@ -71,7 +71,7 @@ function check-and-cask-install {
     msg 'SOFTWARE\t\t -'$1'- already installed' $BYELLOW ||
     (msg 'SOFTWARE\t\t -'$1'- not install by cask' $BRED
     export HOMEBREW_CASK_OPTS="--appdir=/Applications"    
-    brew cask install $1)
+    brew cask install $1 > /dev/null 2>&-)
 }
 
 function cask-packages-path(){
@@ -113,7 +113,7 @@ function install-rvm {
 function install-brew-cask {
     check-and-install-brew-repo phinze cask
     check-and-brew-install brew-cask
-    brew cask alfred link 2>&-
+    brew cask alfred link > /dev/null 2>&-
 }
 
 function install-git {

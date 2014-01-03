@@ -80,7 +80,7 @@ function cask-packages-path(){
 
 function check-and-gem-install {
     msg 'CHECKING\t\t whether gem -'$1'- is installed' $BCYAN
-    gem which $1  > /dev/null 2>&- && 
+    gem list | grep $1  > /dev/null 2>&- && 
     msg 'GEM\t\t -'$1'- already been installed' $BYELLOW ||
     ( msg 'GEM\t\t -'$1'- not been installed' $BRED
     msg 'INSTALL\t\t gem -'$1'- for you' $BPURPLE

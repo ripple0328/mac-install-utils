@@ -36,11 +36,11 @@ function check-command-existence {
 function check-and-brew-install {
     msg 'CHECKING\t\t whether -'$1'- has been installed' $BCYAN
     brew list | grep $1  > /dev/null 2>&- &&
-    
     msg 'PACKAGE\t\t -'$1'- already been installed' $BYELLOW ||
     ( msg 'PACKAGE\t\t -'$1'- not installed' $BRED
     msg 'INSTALL\t\t -'$1'- by brew' $BPURPLE
-    brew install $1 $2 > /dev/null 2>&- 
+    
+    brew install $1 $2 
     msg 'LINKING\t\t -'$1'- to system path' $BPURPLE
     brew link $1 --force > /dev/null 2>&-)
     msg 'Upgrade\t\t -'$1'-' $BPURPLE
@@ -72,6 +72,11 @@ function check-and-cask-install {
     (msg 'SOFTWARE\t\t -'$1'- not install by cask' $BRED
     export HOMEBREW_CASK_OPTS="--appdir=/Applications"    
     brew cask install $1 > /dev/null 2>&-)
+}
+
+function install-tmate {
+    check-and-install-brew-repo nviennot tmate
+    check-and-brew-install tmate
 }
 
 function cask-packages-path(){

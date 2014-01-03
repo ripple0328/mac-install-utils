@@ -142,4 +142,6 @@ function get-root-permisson {
 function  install_pow {
     curl get.pow.cx | sh    
 }
-curl -sSL https://raw.github.com/ripple0328/mac-install-utils/master/basic-environment-installation.sh | bash
+
+source /dev/stdin  <<< "$(curl -s https://raw.github.com/ripple0328/mac-install-utils/master/basic-environment-installation.sh)"
+

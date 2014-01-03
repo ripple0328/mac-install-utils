@@ -4,7 +4,6 @@
 get-root-permisson
 
 # add dependencies
-
 install-brew
 install-git
 install-brew-cask

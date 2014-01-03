@@ -85,8 +85,8 @@ function check-and-gem-install {
     ( msg 'GEM\t\t -'$1'- not been installed' $BRED
     msg 'INSTALL\t\t gem -'$1'- for you' $BPURPLE
     which ruby | grep rvm &&
-    gem install $1 > /dev/null 2>&- ||
-    sudo gem install $1 > /dev/null 2>&- 
+    gem install -f $1 > /dev/null 2>&- ||
+    sudo gem install -f $1 > /dev/null 2>&- 
     )
 }
 

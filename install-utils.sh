@@ -113,8 +113,7 @@ function install-rvm {
 function install-brew-cask {
     check-and-install-brew-repo phinze cask
     check-and-brew-install brew-cask
-    brew-cask > /dev/null 2>&-
-    brew cask alfred link
+    brew cask alfred link 2>&-
 }
 
 function install-git {

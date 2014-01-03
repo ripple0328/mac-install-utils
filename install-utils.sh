@@ -35,7 +35,7 @@ function check-command-existence {
 
 function check-and-brew-install {
     msg 'CHECKING\t\t whether -'$1'- has been installed' $BCYAN
-    brew info $1  > /dev/null 2>&- &&
+    brew list | grep $1  > /dev/null 2>&- &&
     
     msg 'PACKAGE\t\t -'$1'- already been installed' $BYELLOW ||
     ( msg 'PACKAGE\t\t -'$1'- not installed' $BRED

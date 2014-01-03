@@ -98,6 +98,7 @@ function install-brew {
     ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
     msg 'UPDATING\t\t -homebrew-...' $BPURPLE
     brew update > /dev/null 2>&-
+    export PATH=/usr/local/bin:$PATH
 }
 
 function install-rvm {
@@ -112,6 +113,7 @@ function install-rvm {
 function install-brew-cask {
     check-and-install-brew-repo phinze cask
     check-and-brew-install brew-cask
+    brew-cask > /dev/null 2>&-
     brew cask alfred link
 }
 

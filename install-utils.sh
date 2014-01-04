@@ -61,7 +61,7 @@ function install-brew-package {
     msg 'INSTALL\t\t -'$1'- by brew' $BPURPLE
     brew install $1 $2  > /dev/null 2>&-
     msg 'LINKING\t\t -'$1'- to system path' $BPURPLE
-    brew link $1 --force > /dev/null 2>&-
+    brew link --overwrite $1  > /dev/null 2>&-
     msg 'Upgrade\t\t -'$1'-' $BPURPLE
     brew upgrade $1 > /dev/null 2>&-
 }

@@ -26,17 +26,14 @@ CURRENT_SHELL=$(echo $SHELL | cut -f3 -d/)
 SHELL_CONFIG_FILE=$(echo '.'$CURRENT_SHELL'rc')
 
 function setting-cask-install-path {
-    # for brew-cask
-    if [[ ! -z "$HOMEBREW_CASK_OPTS" ]]
-    then
-        echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/$SHELL_CONFIG_FILE
-        source ~/$SHELL_CONFIG_FILE    
-    fi
+    cat ~/$SHELL_CONFIG_FILE | grep HOMEBREW_CASK_OPTS ||
+    echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/$SHELL_CONFIG_FILE
+    source ~/$SHELL_CONFIG_FILE 
 }
 
 function setting-path {
     # for rvm
-    echo $PATH |grep /usr/local/bin &&
+    echo $PATH | grep /usr/local/bin &&
     (echo 'export PATH="/usr/local/bin:$PATH"' >> ~/$SHELL_CONFIG_FILE
     source ~/$SHELL_CONFIG_FILE)    
 }

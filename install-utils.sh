@@ -205,7 +205,7 @@ function install-Inconsolata-powerline-font {
     mv Inconsolata\ for\ Powerline.otf /Library/Fonts/
 }
 
-function get-root-permisson {
+function get-root-permission {
    #TODO somettime the permission will expired
    sudo ls /sbin  > /dev/null 2>&-
 }

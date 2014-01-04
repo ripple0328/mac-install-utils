@@ -4,7 +4,7 @@ source /dev/stdin  <<< "$(curl -s https://raw.github.com/ripple0328/mac-install-
 
 # get permisson at beginning
 
-get-root-permisson
+get-root-permission
 
 # add dependencies
 install-brew

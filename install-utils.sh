@@ -210,13 +210,19 @@ function get-root-permisson {
    sudo ls /sbin  > /dev/null 2>&-
 }
 
-function  install_pow {
+function  install-pow {
     curl get.pow.cx | sh    
 }
 
 function install-utils {
     cd ~
-    curl -o .install-utils https://raw.github.com/ripple0328/mac-install-utils/master/install-utils.sh
-    echo 'source ./install-utils' >> ./$SHELL_CONFIG_FILE
-    source ~/$SHELL_CONFIG_FILE        
+    if [ -f .install-utils ]  ; then
+        msg 'UTILS\t\t already installed' $BYELLOW
+    else    
+        curl -o .install-utils https://raw.github.com/ripple0328/mac-install-utils/master/install-utils.sh
+        echo 'source ./install-utils' >> ./$SHELL_CONFIG_FILE
+        source ~/$SHELL_CONFIG_FILE
+    fi    
 }
+
+

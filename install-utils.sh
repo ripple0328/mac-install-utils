@@ -132,11 +132,12 @@ function is-rvm-ruby {
 }
 
 function is-gem-installed {
+    msg 'CHECKING\t\t whether gem -'$1'- is installed' $BCYAN
     gem list | grep $1  > /dev/null 2>&-  && 
-    msg 'GEM\t\t -'$1'- already been installed' $BYELLOW
+    msg 'GEM\t\t -'$1'- already been installed' $BYELLOW ||
+    msg 'GEM\t\t -'$1'- not been installed' $BRED
 }
 function install-gem {
-    msg 'GEM\t\t -'$1'- not been installed' $BRED
     msg 'INSTALL\t\t gem -'$1'- for you' $BPURPLE
     is-rvm-ruby &&
     gem install -f $1 > /dev/null 2>&- ||
@@ -144,7 +145,6 @@ function install-gem {
 }
 
 function check-and-gem-install {
-    msg 'CHECKING\t\t whether gem -'$1'- is installed' $BCYAN
     is-gem-installed $1  || install-gem $1
 }
 

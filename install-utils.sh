@@ -22,7 +22,7 @@ function colors () {
 }
 colors
 
-CURRENT_SHELL=$(echo $SHELL | tr -d /bin/)
+CURRENT_SHELL=$(echo $SHELL | cut -f3 -d/)
 SHELL_CONFIG_FILE=$(echo '.'$CURRENT_SHELL'rc')
 
 function setting-cask-install-path {

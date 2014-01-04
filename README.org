@@ -28,8 +28,10 @@
 
   2. used as function
      
-     after install basic environment installation, you can use the bash function
-     privode by install-utils seperately. for example you just want to install rvm.
+     after install basic environment installation, the script above will install
+     the install-utils in your local machine. so you can use the bash function
+     privode by install-utils seperately. for example you just want to install
+     rvm.
      
      #+BEGIN_SRC bash
      $install-rvm

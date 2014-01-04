@@ -28,11 +28,13 @@ SHELL_CONFIG_FILE=$(echo '.'$CURRENT_SHELL'rc')
 function setting-cask-install-path {
     # for brew-cask
     echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> $SHELL_CONFIG_FILE
+    source ~/$SHELL_CONFIG_FILE    
 }
 
 function setting-path {
     # for rvm
     echo 'export PATH="/usr/local/bin:$PATH"' >> $SHELL_CONFIG_FILE
+    source ~/$SHELL_CONFIG_FILE    
 }
 
 setting-path
@@ -176,6 +178,7 @@ function install-brew-cask {
 
 function setting-git-hub-alias {
     echo 'alias git=hub' >> $SHELL_CONFIG_FILE
+    source ~/$SHELL_CONFIG_FILE    
 }
 
 function install-git {

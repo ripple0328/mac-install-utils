@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 
 function colors () {
@@ -37,8 +38,7 @@ function setting-path {
     source ~/$SHELL_CONFIG_FILE    
 }
 
-setting-path
-setting-cask-install-path
+
 
 function msg {
     printf "$BGREEN 0000===--->$RESET $2 $1 $RESET\n"
@@ -51,13 +51,13 @@ function check-command-existence {
     hash $1 2>&-
 }
 
-function is_brew_installed {
+function is-brew-installed {
     msg 'CHECKING\t\t whether -'$1'- has been installed' $BCYAN    
     brew list | grep $1  > /dev/null 2>&- &&
     msg 'PACKAGE\t\t -'$1'- already been installed' $BYELLOW 
 }
 
-function install_brew_package {
+function install-brew-package {
     msg 'INSTALL\t\t -'$1'- by brew' $BPURPLE
     brew install $1 $2 
     msg 'LINKING\t\t -'$1'- to system path' $BPURPLE
@@ -67,7 +67,7 @@ function install_brew_package {
 }
 
 function check-and-brew-install {
-    is_brew_installed $1 ||
+    is-brew-installed $1 ||
     msg 'PACKAGE\t\t -'$1'- not installed' $BRED &&
     install_brew_package $1 $2
 }
@@ -123,26 +123,26 @@ function cask-packages-path(){
     brew cask info $1 | sed -n 3p | awk '{split($0,a," "); print a[1]}'
 }
 
-function is_rvm_ruby {
+function is-rvm-ruby {
   msg 'CHECKING\t\t whether rvm ruby is installed' $BCYAN        
   which ruby | grep rvm
 }
 
-function is_gem_installed {
+function is-gem-installed {
     gem list | grep $1  > /dev/null 2>&-  && 
     msg 'GEM\t\t -'$1'- already been installed' $BYELLOW
 }
-function install_gem {
+function install-gem {
     msg 'GEM\t\t -'$1'- not been installed' $BRED
     msg 'INSTALL\t\t gem -'$1'- for you' $BPURPLE
-    is_rvm_ruby &&
+    is-rvm-ruby &&
     gem install -f $1 > /dev/null 2>&- ||
     sudo gem install -f $1 > /dev/null 2>&- 
 }
 
 function check-and-gem-install {
     msg 'CHECKING\t\t whether gem -'$1'- is installed' $BCYAN
-    is_gem_installed $1  || install_gem $1
+    is-gem-nstalled $1  || install-gem $1
 }
 
 function cleanup-command {
@@ -161,19 +161,22 @@ function install-brew {
 function install-rvm {
     check-command-existence rvm &&
     msg 'COMMAND\t\t -rvm- has been installed' $BYELLOW ||
-    \curl -sSL https://get.rvm.io | bash -s stable --ruby
+    (\curl -sSL https://get.rvm.io | bash -s stable --ruby
+        setting-path
+        source /Users/`whoami`/.rvm/scripts/rvm)
     msg 'UPDATING\t\t -rvm-...' $BPURPLE
     rvm get stable > /dev/null 2>&-
-    source /Users/`whoami`/.rvm/scripts/rvm
 }
 
 function alfred-index-brew-cask {
     brew cask alfred link > /dev/null 2>&-
 }
 function install-brew-cask {
+    is-brew-installed brew-cask ||
+    (setting-cask-install-path
     check-and-install-brew-repo phinze cask
     check-and-brew-install brew-cask
-    alfred-index-brew-cask    
+    alfred-index-brew-cask)    
 }
 
 function setting-git-hub-alias {
@@ -182,10 +185,12 @@ function setting-git-hub-alias {
 }
 
 function install-git {
+    is-brew-installed hub ||
+    (setting-git-hub-alias
     check-and-brew-install git
-    check-and-brew-install hub
-    setting-git-hub-alias
+    check-and-brew-install hub)
 }
+
 function patch-shebang-path() {
     sed -i.bak '1 c\
 #\!/usr/bin/env '$2'\
@@ -202,12 +207,16 @@ function install-Inconsolata-powerline-font {
 
 function get-root-permisson {
    #TODO somettime the permission will expired
-   sudo ls > /dev/null 2>&-
+   sudo ls /sbin  > /dev/null 2>&-
 }
 
 function  install_pow {
     curl get.pow.cx | sh    
 }
 
-source /dev/stdin  <<< "$(curl -s https://raw.github.com/ripple0328/mac-install-utils/master/basic-environment-installation.sh)"
-
+function install-utils {
+    cd ~
+    curl -o .install-utils https://raw.github.com/ripple0328/mac-install-utils/master/install-utils.sh
+    echo 'source ./install-utils' >> ./$SHELL_CONFIG_FILE
+    source ~/$SHELL_CONFIG_FILE        
+}

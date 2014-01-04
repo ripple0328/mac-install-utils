@@ -7,7 +7,7 @@
   [[http://railsapps.github.io/xcode-command-line-tools.html][xcode-comand-line-tools-installation]]
 * usage
   #+BEGIN_SRC bash
-  \curl -sSL https://raw.github.com/ripple0328/mac-install-utils/master/install-utils.sh | bash
+  \curl -sSL https://raw.github.com/ripple0328/mac-install-utils/master/basic-environment-installation.sh | bash
   #+END_SRC
 * what it setup
   * brew
@@ -15,7 +15,6 @@
   * git(hub)
 * what it provide(as a bash function)
   * check-and-brew-install /package_name/
-
     check the existence of the brew package
     if not installed then install
   * check-and-npm-install  /package_name/
@@ -25,9 +24,10 @@
   * check-comand-existence /command_name/
   * cleanup-command /command_name/
   * patch-shebang-path /file_name interpreter/
-  * install-rvm 
+  * install-rvm
+  * install-pow
+  * install-tmate
   * cask-packages-path /software_name/
-  * get-root-permisson 
   * install-Inconsolata-powerline-font
 * expample
   for an full example look at this project, installation script is in the bin

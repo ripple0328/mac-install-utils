@@ -49,7 +49,9 @@ function msg {
 function check-command-existence {
     msg 'CHECKING\t\t command -'$1'- existences' $BCYAN
     # command -v $1 >/dev/null 2>&1
-    hash $1 2>&-
+    hash $1 2>&1 &&
+    msg 'COMMAND\t\t -'$1'- already been installed' $BYELLOW ||
+    msg 'COMMAND\t\t -'$1'- not installed' $BRED
 }
 
 function is-brew-installed {
@@ -62,11 +64,11 @@ function is-brew-installed {
 
 function install-brew-package {
     msg 'INSTALL\t\t -'$1'- by brew' $BPURPLE
-    brew install $1 $2  > /dev/null 2>&-
+    brew install $1 $2  > /dev/null 2>&1
     msg 'LINKING\t\t -'$1'- to system path' $BPURPLE
-    brew link --overwrite $1  > /dev/null 2>&-
+    brew link --overwrite $1  > /dev/null 2>&1
     msg 'Upgrade\t\t -'$1'-' $BPURPLE
-    brew upgrade $1 > /dev/null 2>&-
+    brew upgrade $1 > /dev/null 2>&1
 }
 
 function check-and-brew-install {
@@ -93,19 +95,19 @@ function check-and-npm-install {
 
 function is-brew-repo-tapped {
     msg 'CHECKING\t\t whether repo -'$1/$2'- has been taped' $BCYAN       
-    brew tap | grep $1/$2  >/dev/null 2>&- &&
+    brew tap | grep $1/$2  >/dev/null 2>&1 &&
     msg 'REPO\t\t -- already been tapped' $BYELLOW 
 }
 
 function check-and-install-brew-repo {
     is-brew-repo-tapped $1 $2 ||   
     msg 'TAPPING\t\t -'$1/$2'- to brew'
-    brew tap $1/homebrew-$2 >/dev/null 2>&-
+    brew tap $1/homebrew-$2 >/dev/null 2>&1
 }
 
 function is-cask-package-installed {
     msg 'CHECKING\t\t whether package -'$1'- is installed' $BCYAN    
-    brew cask list | grep $1  >/dev/null 2>&- &&
+    brew cask list | grep $1  >/dev/null 2>&1 &&
     msg 'SOFTWARE\t\t -'$1'- already installed' $BYELLOW
 }
 
@@ -114,7 +116,7 @@ function check-and-cask-install {
     is-cask-package-installed $1 ||
     msg 'SOFTWARE\t\t -'$1'- not install by cask' $BRED &&
     (msg 'INSTALL\t\t -'$1'-  by cask' $BPURPLE
-    brew cask install $1 > /dev/null 2>&-)
+    brew cask install $1 > /dev/null 2>&1)
 }
 
 function install-tmate {
@@ -128,20 +130,20 @@ function cask-packages-path(){
 
 function is-rvm-ruby {
   msg 'CHECKING\t\t whether rvm ruby is installed' $BCYAN        
-  which ruby | grep rvm  > /dev/null 2>&- 
+  which ruby | grep rvm  > /dev/null 2>&1 
 }
 
 function is-gem-installed {
     msg 'CHECKING\t\t whether gem -'$1'- is installed' $BCYAN
-    gem list | grep $1  > /dev/null 2>&-  && 
+    gem list | grep $1  > /dev/null 2>&1  && 
     msg 'GEM\t\t -'$1'- already been installed' $BYELLOW ||
     msg 'GEM\t\t -'$1'- not been installed' $BRED
 }
 function install-gem {
     msg 'INSTALL\t\t gem -'$1'- for you' $BPURPLE
     is-rvm-ruby &&
-    gem install -f $1 > /dev/null 2>&- ||
-    sudo gem install -f $1 > /dev/null 2>&- 
+    gem install -f $1 > /dev/null 2>&1 ||
+    sudo gem install -f $1 > /dev/null 2>&1
 }
 
 function check-and-gem-install {
@@ -158,7 +160,7 @@ function install-brew {
     msg 'COMMAND\t\t -brew- has been installed' $BYELLOW ||
     ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
     msg 'UPDATING\t\t -homebrew-...' $BPURPLE
-    brew update > /dev/null 2>&-
+    brew update > /dev/null 2>&1
 }
 
 function install-rvm {
@@ -168,11 +170,11 @@ function install-rvm {
         setting-path
         source /Users/`whoami`/.rvm/scripts/rvm)
     msg 'UPDATING\t\t -rvm-...' $BPURPLE
-    rvm get stable > /dev/null 2>&-
+    rvm get stable > /dev/null 2>&1
 }
 
 function alfred-index-brew-cask {
-    brew cask alfred link > /dev/null 2>&-
+    brew cask alfred link > /dev/null 2>&1
 }
 function install-brew-cask {
     is-brew-installed brew-cask ||
@@ -210,7 +212,7 @@ function install-Inconsolata-powerline-font {
 
 function get-root-permission {
    #TODO somettime the permission will expired
-   sudo ls /sbin  > /dev/null 2>&-
+   sudo ls /sbin  > /dev/null 2>&1
 }
 
 function  install-pow {
@@ -220,7 +222,7 @@ function  install-pow {
 function install-utils {
     cd ~
     curl -so.install-utils https://raw.github.com/ripple0328/mac-install-utils/master/install-utils.sh
-    cat ~/$SHELL_CONFIG_FILE | grep install-utils  > /dev/null 2>&- ||
+    cat ~/$SHELL_CONFIG_FILE | grep install-utils  > /dev/null 2>&1 ||
     (echo 'source ~/.install-utils' >> ./$SHELL_CONFIG_FILE
     source ~/$SHELL_CONFIG_FILE)
     source ~/.install-utils

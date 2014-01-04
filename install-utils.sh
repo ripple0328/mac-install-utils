@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 
 function colors () {
@@ -127,7 +126,7 @@ function cask-packages-path(){
 
 function is-rvm-ruby {
   msg 'CHECKING\t\t whether rvm ruby is installed' $BCYAN        
-  which ruby | grep rvm
+  which ruby | grep rvm  > /dev/null 2>&-  && 
 }
 
 function is-gem-installed {
@@ -218,8 +217,7 @@ function  install-pow {
 
 function install-utils {
     cd ~
-    curl -o .install-utils https://raw.github.com/ripple0328/mac-install-utils/master/install-utils.sh
-
+    curl –silent –output .install-utils https://raw.github.com/ripple0328/mac-install-utils/master/install-utils.sh
     cat ./$SHELL_CONFIG_FILE | grep install-utils ||
     (echo 'source ~/.install-utils' >> ./$SHELL_CONFIG_FILE
     source ~/$SHELL_CONFIG_FILE)

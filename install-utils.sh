@@ -29,7 +29,7 @@ function setting-cask-install-path {
     # for brew-cask
     if [[ ! -z "$HOMEBREW_CASK_OPTS" ]]
     then
-        echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> $SHELL_CONFIG_FILE
+        echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/$SHELL_CONFIG_FILE
         source ~/$SHELL_CONFIG_FILE    
     fi
 }
@@ -37,7 +37,7 @@ function setting-cask-install-path {
 function setting-path {
     # for rvm
     echo $PATH |grep /usr/local/bin &&
-    (echo 'export PATH="/usr/local/bin:$PATH"' >> $SHELL_CONFIG_FILE
+    (echo 'export PATH="/usr/local/bin:$PATH"' >> ~/$SHELL_CONFIG_FILE
     source ~/$SHELL_CONFIG_FILE)    
 }
 
@@ -219,7 +219,7 @@ function  install-pow {
 function install-utils {
     cd ~
     curl -so.install-utils https://raw.github.com/ripple0328/mac-install-utils/master/install-utils.sh
-    cat ./$SHELL_CONFIG_FILE | grep install-utils  > /dev/null 2>&- ||
+    cat ~/$SHELL_CONFIG_FILE | grep install-utils  > /dev/null 2>&- ||
     (echo 'source ~/.install-utils' >> ./$SHELL_CONFIG_FILE
     source ~/$SHELL_CONFIG_FILE)
     source ~/.install-utils

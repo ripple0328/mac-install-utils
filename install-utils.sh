@@ -126,7 +126,7 @@ function cask-packages-path(){
 
 function is-rvm-ruby {
   msg 'CHECKING\t\t whether rvm ruby is installed' $BCYAN        
-  which ruby | grep rvm  > /dev/null 2>&-  && 
+  which ruby | grep rvm  > /dev/null 2>&- 
 }
 
 function is-gem-installed {

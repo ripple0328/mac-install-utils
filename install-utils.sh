@@ -59,7 +59,7 @@ function is-brew-installed {
 
 function install-brew-package {
     msg 'INSTALL\t\t -'$1'- by brew' $BPURPLE
-    brew install $1 $2 
+    brew install $1 $2  > /dev/null 2>&-
     msg 'LINKING\t\t -'$1'- to system path' $BPURPLE
     brew link $1 --force > /dev/null 2>&-
     msg 'Upgrade\t\t -'$1'-' $BPURPLE
@@ -68,8 +68,8 @@ function install-brew-package {
 
 function check-and-brew-install {
     is-brew-installed $1 ||
-    msg 'PACKAGE\t\t -'$1'- not installed' $BRED &&
-    install-brew-package $1 $2
+    (msg 'PACKAGE\t\t -'$1'- not installed' $BRED &&
+    install-brew-package $1 $2)
 }
 
 function is-npm-packages-installed {

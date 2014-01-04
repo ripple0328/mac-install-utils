@@ -218,7 +218,7 @@ function  install-pow {
 function install-utils {
     cd ~
     curl -so.install-utils https://raw.github.com/ripple0328/mac-install-utils/master/install-utils.sh
-    cat ./$SHELL_CONFIG_FILE | grep install-utils ||
+    cat ./$SHELL_CONFIG_FILE | grep install-utils  > /dev/null 2>&- ||
     (echo 'source ~/.install-utils' >> ./$SHELL_CONFIG_FILE
     source ~/$SHELL_CONFIG_FILE)
     source ~/.install-utils

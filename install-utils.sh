@@ -55,7 +55,9 @@ function check-command-existence {
 function is-brew-installed {
     msg 'CHECKING\t\t whether -'$1'- has been installed' $BCYAN    
     brew list | grep $1  > /dev/null 2>&- &&
-    msg 'PACKAGE\t\t -'$1'- already been installed' $BYELLOW 
+    msg 'PACKAGE\t\t -'$1'- already been installed' $BYELLOW ||
+    msg 'PACKAGE\t\t -'$1'- not installed' $BRED
+
 }
 
 function install-brew-package {
@@ -69,8 +71,7 @@ function install-brew-package {
 
 function check-and-brew-install {
     is-brew-installed $1 ||
-    (msg 'PACKAGE\t\t -'$1'- not installed' $BRED &&
-    install-brew-package $1 $2)
+    install-brew-package $1 $2
 }
 
 function is-npm-packages-installed {

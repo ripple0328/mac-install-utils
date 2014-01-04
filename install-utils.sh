@@ -75,14 +75,14 @@ function check-and-brew-install {
 
 function is-npm-packages-installed {
     msg 'CHECKING\t\t whether -'$1'- has been installed' $BCYAN    
-    npm list -g --parseable | grep $1 > /dev/null 2>&-  &&
+    npm list -g --parseable | grep $1 > /dev/null 2>&1  &&
     msg 'PACKAGE\t\t -'$1'- already been installed' $BYELLOW ||
     msg 'PACKAGE\t\t -'$1'- not installed' $BRED
 }
 
 function install-npm-package {
     msg 'INSTALL\t\t -'$1'- by npm' $BPURPLE
-    npm install -g $1 > /dev/null 2>&-  
+    npm install -g $1 > /dev/null 2>&1
 }
 
 function check-and-npm-install {

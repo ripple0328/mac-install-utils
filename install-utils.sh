@@ -86,8 +86,8 @@ function install-npm-package {
 
 function check-and-npm-install {
     is-npm-packages-installed $1 ||
-    msg 'PACKAGE\t\t -'$1'- not installed' $BRED &&
-    install-npm-package $1
+    (msg 'PACKAGE\t\t -'$1'- not installed' $BRED &&
+    install-npm-package $1)
 }
 
 function is-brew-repo-tapped {

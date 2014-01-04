@@ -76,7 +76,8 @@ function check-and-brew-install {
 function is-npm-packages-installed {
     msg 'CHECKING\t\t whether -'$1'- has been installed' $BCYAN    
     npm list -g --parseable | grep $1 > /dev/null 2>&-  &&
-    msg 'PACKAGE\t\t -'$1'- already been installed' $BYELLOW 
+    msg 'PACKAGE\t\t -'$1'- already been installed' $BYELLOW ||
+    msg 'PACKAGE\t\t -'$1'- not installed' $BRED
 }
 
 function install-npm-package {
@@ -86,8 +87,7 @@ function install-npm-package {
 
 function check-and-npm-install {
     is-npm-packages-installed $1 ||
-    (msg 'PACKAGE\t\t -'$1'- not installed' $BRED &&
-    install-npm-package $1)
+    install-npm-package $1
 }
 
 function is-brew-repo-tapped {

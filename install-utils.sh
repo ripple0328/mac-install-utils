@@ -28,17 +28,19 @@ SHELL_CONFIG_FILE=$(echo '.'$CURRENT_SHELL'rc')
 
 function setting-cask-install-path {
     # for brew-cask
-    echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> $SHELL_CONFIG_FILE
-    source ~/$SHELL_CONFIG_FILE    
+    if [[ ! -z "$HOMEBREW_CASK_OPTS" ]]
+    then
+        echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> $SHELL_CONFIG_FILE
+        source ~/$SHELL_CONFIG_FILE    
+    fi
 }
 
 function setting-path {
     # for rvm
-    echo 'export PATH="/usr/local/bin:$PATH"' >> $SHELL_CONFIG_FILE
-    source ~/$SHELL_CONFIG_FILE    
+    echo $PATH |grep /usr/local/bin &&
+    (echo 'export PATH="/usr/local/bin:$PATH"' >> $SHELL_CONFIG_FILE
+    source ~/$SHELL_CONFIG_FILE)    
 }
-
-
 
 function msg {
     printf "$BGREEN 0000===--->$RESET $2 $1 $RESET\n"
@@ -216,17 +218,11 @@ function  install-pow {
 
 function install-utils {
     cd ~
-    if [ -f .install-utils ]  ; then
-        curl -o .install-utils https://raw.github.com/ripple0328/mac-install-utils/master/install-utils.sh
+    curl -o .install-utils https://raw.github.com/ripple0328/mac-install-utils/master/install-utils.sh
 
-        msg 'UTILS\t\t already installed' $BYELLOW
-    else
-        curl -o .install-utils https://raw.github.com/ripple0328/mac-install-utils/master/install-utils.sh
-
-        echo 'source ./.install-utils' >> ./$SHELL_CONFIG_FILE
-        
-    fi
-    source ~/$SHELL_CONFIG_FILE
+    cat ./$SHELL_CONFIG_FILE | grep install-utils ||
+    (echo 'source ./.install-utils' >> ./$SHELL_CONFIG_FILE
+    source ~/$SHELL_CONFIG_FILE)
     source ~/.install-utils
 }
 

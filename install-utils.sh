@@ -69,7 +69,7 @@ function install-brew-package {
 function check-and-brew-install {
     is-brew-installed $1 ||
     msg 'PACKAGE\t\t -'$1'- not installed' $BRED &&
-    install_brew_package $1 $2
+    install-brew-package $1 $2
 }
 
 function is-npm-packages-installed {
@@ -142,7 +142,7 @@ function install-gem {
 
 function check-and-gem-install {
     msg 'CHECKING\t\t whether gem -'$1'- is installed' $BCYAN
-    is-gem-nstalled $1  || install-gem $1
+    is-gem-installed $1  || install-gem $1
 }
 
 function cleanup-command {

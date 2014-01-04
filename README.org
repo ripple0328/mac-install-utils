@@ -20,28 +20,28 @@
   
 * usage
 
-  1. setup package manager
+   1. setup package manager
 
-  #+BEGIN_SRC bash
-  \curl -sSL https://raw.github.com/ripple0328/mac-install-utils/master/basic-environment-installation.sh | bash
-  #+END_SRC
+    #+BEGIN_SRC bash
+     $\curl -sSL https://raw.github.com/ripple0328/mac-install-utils/master/basic-environment-installation.sh | bash
+    #+END_SRC
 
-  2. used as function
+   2. used as function
      
-     after install basic environment installation, the script above will install
-     the install-utils in your local machine. so you can use the bash function
-     privode by install-utils seperately. for example you just want to install
-     rvm.
+      after install basic environment installation, the script above will install
+      the install-utils in your local machine. so you can use the bash function
+      privode by install-utils seperately. for example you just want to install
+      rvm.
      
-     #+BEGIN_SRC bash
-     $install-rvm
-     #+END_SRC
+      #+BEGIN_SRC bash
+      $install-rvm
+      #+END_SRC
      
-     or 
+      or 
      
-     #+BEGIN_SRC bash
-     $check-and-cask-install qq
-     #+END_SRC
+      #+BEGIN_SRC bash
+      $check-and-cask-install qq
+      #+END_SRC
      
      
 * what it setup

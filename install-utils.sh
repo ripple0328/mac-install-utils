@@ -112,7 +112,8 @@ function is-cask-package-installed {
 function check-and-cask-install {
     is-cask-package-installed $1 ||
     msg 'SOFTWARE\t\t -'$1'- not install by cask' $BRED &&
-    brew cask install $1 > /dev/null 2>&-
+    (msg 'INSTALL\t\t -'$1'-  by cask' $BPURPLE
+    brew cask install $1 > /dev/null 2>&-)
 }
 
 function install-tmate {

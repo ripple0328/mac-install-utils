@@ -25,6 +25,11 @@ colors
 CURRENT_SHELL=$(echo $SHELL | cut -f3 -d/)
 SHELL_CONFIG_FILE=$(echo '.'$CURRENT_SHELL'rc')
 
+if [ ! -f ~/$SHELL_CONFIG_FILE ];
+then
+    touch ~/$SHELL_CONFIG_FILE
+fi    
+
 function setting-cask-install-path {
     cat ~/$SHELL_CONFIG_FILE | grep HOMEBREW_CASK_OPTS ||
     echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/$SHELL_CONFIG_FILE
@@ -46,7 +51,7 @@ function msg {
 function check-command-existence {
     msg 'CHECKING\t\t command -'$1'- existences' $BCYAN
     # command -v $1 >/dev/null 2>&1
-    hash $1 2>&1 &&
+    hash $1 > /dev/null 2>&1 &&
     msg 'COMMAND\t\t -'$1'- already been installed' $BYELLOW ||
     msg 'COMMAND\t\t -'$1'- not installed' $BRED
 }

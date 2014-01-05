@@ -61,7 +61,6 @@ function is-brew-installed {
     brew list | grep $1  > /dev/null 2>&- &&
     msg 'PACKAGE\t\t -'$1'- already been installed' $BYELLOW ||
     msg 'PACKAGE\t\t -'$1'- not installed' $BRED
-
 }
 
 function install-brew-package {
@@ -214,7 +213,10 @@ function install-Inconsolata-powerline-font {
 
 function get-root-permission {
    #TODO somettime the permission will expired
-   sudo ls /sbin  > /dev/null 2>&1
+   while true;
+   do 
+       sudo ls /sbin > /dev/null 2>&1 && break;
+   done
 }
 
 function  install-pow {

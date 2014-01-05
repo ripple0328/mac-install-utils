@@ -6,7 +6,7 @@
   just type command below and fllow the instructions.
   
   #+BEGIN_SRC bash
-  $gcc
+  $ gcc
   #+END_SRC
 
   and then click install button.
@@ -23,10 +23,16 @@
    1. setup package manager
 
     #+BEGIN_SRC bash
-     $\curl -sSL https://raw.github.com/ripple0328/mac-install-utils/master/basic-environment-installation.sh | bash
+     $ \curl -sSL https://raw.github.com/ripple0328/mac-install-utils/master/basic-environment-installation.sh | bash
     #+END_SRC
 
-   2. used as function
+   2. use in your bash script
+      
+      #+BEGIN_SRC bash
+      $ source /dev/stdin  <<< "$(curl -s https://raw.github.com/ripple0328/mac-install-utils/master/install-utils.sh)"
+      #+END_SRC
+
+   3. used as function
      
       after install basic environment installation, the script above will install
       the install-utils in your local machine. so you can use the bash function
@@ -34,15 +40,14 @@
       rvm.
      
       #+BEGIN_SRC bash
-      $install-rvm
+      $ install-rvm
       #+END_SRC
      
       or 
      
       #+BEGIN_SRC bash
-      $check-and-cask-install qq
+      $ check-and-cask-install qq
       #+END_SRC
-     
      
 * what it setup
   * brew

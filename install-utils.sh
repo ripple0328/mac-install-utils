@@ -77,8 +77,7 @@ function install-brew-package {
 }
 
 function check-and-brew-install {
-    is-brew-installed $1 ||
-    install-brew-package $1 $2
+    is-brew-installed $1 || install-brew-package $1 $2
 }
 
 function is-npm-packages-installed {

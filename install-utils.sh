@@ -112,8 +112,8 @@ function check-and-install-brew-repo {
 }
 
 function is-cask-package-installed {
-    msg 'CHECKING\t\t whether package -'$1'- is installed' $BCYAN    
-    brew cask list | grep $1  >/dev/null 2>&1 &&
+    msg 'CHECKING\t\t whether package -'$1'- is installed' $BCYAN
+    brew cask list | grep `echo $1 | tr '[:upper:]' '[:lower:]'`  >/dev/null 2>&1 &&
     msg 'SOFTWARE\t\t -'$1'- already installed' $BYELLOW
 }
 

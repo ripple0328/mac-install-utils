@@ -120,8 +120,8 @@ function is-cask-package-installed {
 
 function check-and-cask-install {
     is-cask-package-installed $1 ||
-    msg 'SOFTWARE\t\t -'$1'- not install by cask' $BRED &&
-    (msg 'INSTALL\t\t -'$1'-  by cask' $BPURPLE
+    (msg 'SOFTWARE\t\t -'$1'- not install by cask' $BRED 
+    msg 'INSTALL\t\t -'$1'-  by cask' $BPURPLE
     brew cask install $1 > /dev/null 2>&1)
 }
 
@@ -143,7 +143,9 @@ function is-gem-installed {
     msg 'CHECKING\t\t whether gem -'$1'- is installed' $BCYAN
     gem list | grep $1  > /dev/null 2>&1  && 
     msg 'GEM\t\t -'$1'- already been installed' $BYELLOW ||
-    msg 'GEM\t\t -'$1'- not been installed' $BRED
+    (msg 'GEM\t\t -'$1'- not been installed' $BRED
+                return 1
+    )
 }
 function install-gem {
     msg 'INSTALL\t\t gem -'$1'- for you' $BPURPLE
@@ -236,5 +238,3 @@ function install-utils {
     source ~/$SHELL_CONFIG_FILE)
     source ~/.install-utils
 }
-
-

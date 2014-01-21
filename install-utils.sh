@@ -50,8 +50,8 @@ function msg {
 
 function check-command-existence {
     msg 'CHECKING\t\t command -'$1'- existences' $BCYAN
-    # command -v $1 >/dev/null 2>&1
-    hash $1 > /dev/null 2>&1 &&
+    command -v $1 >/dev/null 2>&1
+    # hash $1 > /dev/null 2>&1 &&
     msg 'COMMAND\t\t -'$1'- already been installed' $BYELLOW ||
     (msg 'COMMAND\t\t -'$1'- not installed' $BRED
         return 1

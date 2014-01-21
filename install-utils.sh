@@ -53,14 +53,18 @@ function check-command-existence {
     # command -v $1 >/dev/null 2>&1
     hash $1 > /dev/null 2>&1 &&
     msg 'COMMAND\t\t -'$1'- already been installed' $BYELLOW ||
-    msg 'COMMAND\t\t -'$1'- not installed' $BRED
+    (msg 'COMMAND\t\t -'$1'- not installed' $BRED
+        return 1
+    )
 }
 
 function is-brew-installed {
     msg 'CHECKING\t\t whether -'$1'- has been installed' $BCYAN    
     brew list | grep $1  > /dev/null 2>&- &&
     msg 'PACKAGE\t\t -'$1'- already been installed' $BYELLOW ||
-    msg 'PACKAGE\t\t -'$1'- not installed' $BRED
+    (msg 'PACKAGE\t\t -'$1'- not installed' $BRED
+        return 1
+    )
 }
 
 function install-brew-package {
@@ -81,7 +85,9 @@ function is-npm-packages-installed {
     msg 'CHECKING\t\t whether -'$1'- has been installed' $BCYAN    
     npm list -g --parseable | grep $1 > /dev/null 2>&1  &&
     msg 'PACKAGE\t\t -'$1'- already been installed' $BYELLOW ||
-    msg 'PACKAGE\t\t -'$1'- not installed' $BRED
+    (msg 'PACKAGE\t\t -'$1'- not installed' $BRED
+        return 1
+    )
 }
 
 function install-npm-package {

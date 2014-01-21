@@ -149,9 +149,8 @@ function is-gem-installed {
 }
 function install-gem {
     msg 'INSTALL\t\t gem -'$1'- for you' $BPURPLE
-    is-rvm-ruby &&
-    gem install -f $1 > /dev/null 2>&1 ||
-    sudo gem install -f $1 > /dev/null 2>&1
+    is-rvm-ruby && gem install -f $1 > /dev/null 2>&1 ||
+    (sudo gem install -f $1 > /dev/null 2>&1)
 }
 
 function check-and-gem-install {
@@ -179,6 +178,7 @@ function install-rvm {
         source /Users/`whoami`/.rvm/scripts/rvm)
     msg 'UPDATING\t\t -rvm-...' $BPURPLE
     rvm get stable > /dev/null 2>&1
+    rvm use 2.1.0 --default
 }
 
 function alfred-index-brew-cask {

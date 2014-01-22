@@ -8,6 +8,7 @@ get-root-permission
 
 # add dependencies
 install-brew
+check-and-brew-install zsh
 install-git
 install-brew-cask
 install-utils

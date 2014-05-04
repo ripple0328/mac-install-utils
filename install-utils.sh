@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function colors () {
+function colors {
     # Reset
     RESET='\e[0m'
     RED='\e[0;31m'          # Red
@@ -130,7 +130,7 @@ function install-tmate {
     check-and-brew-install tmate
 }
 
-function cask-packages-path(){
+function cask-packages-path {
     brew cask info $1 | sed -n 3p | awk '{split($0,a," "); print a[1]}'
 }
 
@@ -204,7 +204,7 @@ function install-git {
     check-and-brew-install hub)
 }
 
-function patch-shebang-path() {
+function patch-shebang-path  {
     sed -i.bak '1 c\
 #\!/usr/bin/env '$2'\
 '  $1

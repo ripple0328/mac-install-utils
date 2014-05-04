@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source /dev/stdin  <<< "$(curl -s https://raw.github.com/ripple0328/mac-install-utils/master/install-utils.sh)"
+source /dev/stdin  <<<  "$(curl -s https://raw.githubusercontent.com/ripple0328/mac-install-utils/master/install-utils.sh)"
 
 # get permisson at beginning
 

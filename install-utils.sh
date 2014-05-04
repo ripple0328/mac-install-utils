@@ -178,7 +178,7 @@ function install-rvm {
     msg 'UPDATING\t\t -rvm-...' $BPURPLE
     source /Users/`whoami`/.rvm/scripts/rvm
     rvm get stable > /dev/null 2>&1
-    rvm use 2.1.0 --default
+    rvm use 2.1 --default
 }
 
 function alfred-index-brew-cask {

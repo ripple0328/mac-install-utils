@@ -144,7 +144,7 @@ function is-gem-installed {
     gem list | grep $1  > /dev/null 2>&1  && 
     msg 'GEM\t\t -'$1'- already been installed' $BYELLOW ||
     (msg 'GEM\t\t -'$1'- not been installed' $BRED
-                return 1
+     return -1
     )
 }
 function install-gem {

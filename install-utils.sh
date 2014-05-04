@@ -85,7 +85,7 @@ function is-npm-packages-installed {
     npm list -g --parseable | grep $1 > /dev/null 2>&1  &&
     msg 'PACKAGE\t\t -'$1'- already been installed' $BYELLOW ||
     (msg 'PACKAGE\t\t -'$1'- not installed' $BRED
-        return 1
+        return -1
     )
 }
 
@@ -219,7 +219,7 @@ function install-Inconsolata-powerline-font {
 }
 
 function get-root-permission {
-   #TODO somettime the permission will expired
+   #TODO sometime the permission will expired
    while true;
    do 
        sudo ls /sbin > /dev/null 2>&1 && break;
@@ -232,7 +232,11 @@ function  install-pow {
 
 function install-utils {
     cd ~
-    rm .install-utils
+    if [ -f install-utils.sh ];
+    then
+        rm .install-utils
+    fi    
+
     curl -so.install-utils https://raw.githubusercontent.com/ripple0328/mac-install-utils/master/install-utils.sh
     cat ~/$SHELL_CONFIG_FILE | grep install-utils  > /dev/null 2>&1 ||
     (echo 'source ~/.install-utils' >> ~/$SHELL_CONFIG_FILE
